@@ -14,6 +14,6 @@ namespace Ophelia
         public const byte AGE_CLIENT = 35;
         public static DateTime INIT_DATE = new DateTime(2000, 2, 1);
         public static DateTime LAST_DATE = new DateTime(2000, 5, 25);
-        public const string QUERY_TOTAL_SOLD = "SELECT AR.IdProducto as Id, PR.Nombre, COUNT(AR.IdProducto) as CantidadVendida, TRY_CAST((COUNT(AR.IdProducto) * PR.PrecioUnitario) AS BIGINT) as TotalVendido FROM [ophelia].[ArticulosVenta] AR INNER JOIN [ophelia].[Productos] PR ON AR.IdProducto = PR.Id GROUP BY AR.IdProducto, PR.Nombre, PR.PrecioUnitario";
+        public const string QUERY_TOTAL_SOLD = "SELECT AR.IdProducto as Id, PR.Nombre, COUNT(AR.IdProducto) as CantidadVendida, TRY_CAST((COUNT(AR.IdProducto) * PR.PrecioUnitario) AS BIGINT) as TotalVendido FROM [ophelia].[ArticulosVenta] AR INNER JOIN [ophelia].[Productos] PR ON AR.IdProducto = PR.Id INNER JOIN [ophelia].[Ventas] V ON V.Id = AR.IdVenta WHERE V.Fecha BETWEEN '2000-01-01' AND '2000-12-31' GROUP BY AR.IdProducto, PR.Nombre, PR.PrecioUnitario";
     }
 }
